@@ -13,22 +13,18 @@ public class Feed {
         gossips.add(gossip);
     }
 
-    public void sortGossips() {
-        Collections.sort(gossips, new Comparator<Gossip>() {
-            @Override
-            public int compare(Gossip gossip1, Gossip gossip2) {
-                if (gossip1.isPinned() && !gossip2.isPinned())
-                    return -1;
-
-                if (!gossip1.isPinned() && gossip2.isPinned())
-                    return 1;
-
-                if (gossip1.getPostTime().isBefore(gossip2.getPostTime()))
-                    return -1;
-
-                return 1;
+    public boolean removeGossip(final UUID uuid) {
+        for (int i = 0; i < gossips.size(); i++)
+            if (gossips.get(i).getUUID() == uuid) {
+                gossips.remove(i);
+                return true;
             }
-        });
+
+        return false;
+    }
+
+    public boolean removeGossip(final Gossip gossip) {
+        return removeGossip(gossip.getUUID());
     }
 
     public List<Gossip> getGossips() {
