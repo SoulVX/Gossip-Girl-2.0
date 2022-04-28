@@ -3,11 +3,15 @@ package classes;
 import java.util.*;
 
 public class Feed {
+    private Admin admin;
     private List<Gossip> gossips;
 
-    public Feed() {
+    public Feed(final Admin admin) {
+        this.admin = admin;
+
         gossips = new ArrayList<>();
     }
+
 
     public void addGossip(final Gossip gossip) {
         gossips.add(gossip);
@@ -21,6 +25,18 @@ public class Feed {
             }
 
         return false;
+    }
+
+    public void reportGossip(final UUID uuid) {
+        for (int i = 0; i < gossips.size(); i++)
+            if (gossips.get(i).getUUID() == uuid)
+                if (admin.shouldBeRemoved(gossips.get(i))) {
+                    removeGossip(uuid);
+                    System.out.println("Gossip was banned!");
+                    return;
+                }
+
+        System.out.printf("Gossip was reported!");
     }
 
     public boolean removeGossip(final Gossip gossip) {

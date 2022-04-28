@@ -49,6 +49,10 @@ public class Gossip {
         pinned = true;
     }
 
+    public void unpin() {
+        pinned = false;
+    }
+
     public UUID getUUID() {
         return uuid;
     }
@@ -60,6 +64,7 @@ public class Gossip {
     public LocalDateTime getPostTime() {
         return postTime;
     }
+
     public boolean isPinned() {
         return pinned;
     }
@@ -67,8 +72,8 @@ public class Gossip {
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yyyy hh:mm:ss");
 
-        return "UUID: " + uuid + "\n" +
-               "Date and time: " + postTime.format(formatter) + "\n" +
-               "Text: " + text;
+        return "{\n\tUUID: " + uuid + "\n" +
+               "\tDate and time: " + postTime.format(formatter) + "\n" +
+               "\tText: " + text + "\n}";
     }
 }
