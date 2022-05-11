@@ -5,6 +5,7 @@ import com.stefanp.springboot.model.User;
 import com.stefanp.springboot.service.GossipService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class GossipController {
     private final GossipService gossipService;
 
@@ -31,7 +32,7 @@ public class GossipController {
     }
 
     @GetMapping("/feed")
-    public List<Gossip> getFeed() {
-        return gossipService.getFeed();
+    public String getFeed() {
+        return "/feed";
     }
 }

@@ -2,6 +2,7 @@ package com.stefanp.springboot.service.impl;
 
 import com.stefanp.springboot.model.Gossip;
 import com.stefanp.springboot.repository.GossipRepository;
+import com.stefanp.springboot.repository.UserRepository;
 import com.stefanp.springboot.service.GossipService;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +13,15 @@ import java.util.List;
 public class GossipServiceImpl implements GossipService {
 
     private GossipRepository gossipRepository;
+    private UserRepository userRepository;
 
-    public GossipServiceImpl(GossipRepository gossipRepository) {
+    public GossipServiceImpl(GossipRepository gossipRepository, UserRepository userRepository) {
         this.gossipRepository = gossipRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public Gossip saveGossip(Gossip gossip) {
-        System.out.println(gossip.getUser().getId());
         return gossipRepository.save(gossip);
     }
 

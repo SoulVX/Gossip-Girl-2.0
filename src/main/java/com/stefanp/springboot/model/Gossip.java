@@ -13,9 +13,8 @@ public class Gossip {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id")
-    User user;
+    @Column(name = "user_id")
+    private Long user_id;
 
     @Column(name = "content", length = 500)
     private String content;
