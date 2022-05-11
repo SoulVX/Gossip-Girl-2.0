@@ -6,6 +6,7 @@ import com.stefanp.springboot.service.GossipService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +33,8 @@ public class GossipController {
     }
 
     @GetMapping("/feed")
-    public String getFeed() {
+    public String getFeed(Model model) {
+        model.addAttribute("gossips", gossipService.getFeed());
         return "/feed";
     }
 }

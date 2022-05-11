@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Plang</title>
+    <title>Feed</title>
 </head>
 <body>
+    <div>
+        <h2>Gossips</h2>
+        <hr/>
 
+        <table border="1">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Content</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="gossip : ${gossips}">
+                    <td th:text="${gossip.id}"></td>
+                    <td th:text="${gossip.content}"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
 </body>
 </html>
