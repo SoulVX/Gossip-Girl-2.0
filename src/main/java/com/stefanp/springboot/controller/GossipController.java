@@ -1,6 +1,9 @@
 package com.stefanp.springboot.controller;
 
+import com.stefanp.springboot.exception.AlreadyExistsGossipException;
+import com.stefanp.springboot.exception.InvalidGossipException;
 import com.stefanp.springboot.model.Gossip;
+import com.stefanp.springboot.model.GossipChecker;
 import com.stefanp.springboot.model.User;
 import com.stefanp.springboot.service.GossipService;
 import com.stefanp.springboot.service.UserService;
@@ -24,6 +27,10 @@ public class GossipController {
 
     @PostMapping("/api/gossip")
     public ResponseEntity<Gossip> sendGossip(@RequestBody Gossip gossip) {
+        if (GossipChecker.isGossipInappropriate(gossip) == true)
+            throw new InvalidGossipException(gossip);
+        if (GossipChecker.alreadyExists(, gossip) == true)
+            throw new AlreadyExistsGossipException(, gossip);
         return new ResponseEntity<>(gossipService.saveGossip(gossip), HttpStatus.CREATED);
     }
 
