@@ -23,13 +23,26 @@ public class GossipController {
     }
 
     @PostMapping("/api/gossip")
-    public ResponseEntity<Gossip> saveGossip(@RequestBody Gossip gossip) {
+    public ResponseEntity<Gossip> sendGossip(@RequestBody Gossip gossip) {
         return new ResponseEntity<>(gossipService.saveGossip(gossip), HttpStatus.CREATED);
     }
 
     @GetMapping("/api/gossip")
     public List<Gossip> getAllGossips() {
         return gossipService.getAllGossips();
+    }
+
+    @PostMapping("sendGossip")
+    public String getFormBack(Gossip gossip) {
+        gossipService.saveGossip(gossip);
+        return "/feed";
+    }
+
+    @GetMapping("/sendGossip")
+    public String sendFormToUser(Model model) {
+        Gossip gossip = new Gossip();
+        model.addAttribute("gossip", gossip);
+        return "/gossipForm";
     }
 
     @GetMapping("/feed")
