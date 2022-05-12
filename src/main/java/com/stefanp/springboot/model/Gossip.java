@@ -1,8 +1,10 @@
 package com.stefanp.springboot.model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -13,8 +15,16 @@ public class Gossip {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date", nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date createDate;
+
     @Column(name = "user_id")
     private Long user_id;
+
+    @Column(name = "user_name")
+    private String user_name;
 
     @Column(name = "content", length = 500)
     private String content;

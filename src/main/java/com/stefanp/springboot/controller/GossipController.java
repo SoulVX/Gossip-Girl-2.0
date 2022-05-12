@@ -3,23 +3,23 @@ package com.stefanp.springboot.controller;
 import com.stefanp.springboot.model.Gossip;
 import com.stefanp.springboot.model.User;
 import com.stefanp.springboot.service.GossipService;
+import com.stefanp.springboot.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 public class GossipController {
     private final GossipService gossipService;
+    private final UserService userService;
 
-    public GossipController(GossipService gossipService) {
+    public GossipController(GossipService gossipService, UserService userService) {
         this.gossipService = gossipService;
+        this.userService = userService;
     }
 
     @PostMapping("/api/gossip")
@@ -32,10 +32,11 @@ public class GossipController {
         return gossipService.getAllGossips();
     }
 
-    @PostMapping("sendGossip")
+    @PostMapping("/sendGossip")
     public String getFormBack(Gossip gossip) {
+        gossip.setUser_name(userService.getUser(gossip.getUser_id()).getUsername());
         gossipService.saveGossip(gossip);
-        return "/feed";
+        return "redirect:/feed";
     }
 
     @GetMapping("/sendGossip")
@@ -45,9 +46,15 @@ public class GossipController {
         return "/gossipForm";
     }
 
-    @GetMapping("/feed")
+    @GetMapping("/inbox")
     public String getFeed(Model model) {
         model.addAttribute("gossips", gossipService.getFeed());
-        return "/feed";
+        return "/inbox";
+    }
+
+    @GetMapping("/deleteGossip")
+    public String deleteFeed(@RequestParam Long id) {
+        gossipService.deleteGossip(id);
+        return "redirect:/inbox";
     }
 }

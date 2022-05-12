@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inbox</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h2>Gossips</h2>
+        <hr/>
+
+<!--        <div class="starter-template panel" th:each="gossip : ${gossips}">-->
+<!--            <div class="panel-heading">-->
+<!--&lt;!&ndash;                <h1><a th:text="${post.title}" th:href="@{'/post/' + ${post.id}}">Title</a></h1>&ndash;&gt;-->
+<!--                <div th:text="'Created: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')} + ' by '">-->
+<!--                    Created by-->
+<!--                </div>-->
+<!--                <div><a th:text="${post.user.username}" th:href="@{'/blog/' + ${post.user.username}}">User</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <h3 class="panel-body" th:text="${post.body}">Body</h3>-->
+<!--            <br></br>-->
+<!--        </div>-->
+
+        <table class = "table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Sent by</th>
+                <th>Content</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="gossip : ${gossips}">
+                    <td th:text="${gossip.user_name}"></td>
+                    <td th:text="${gossip.content}"></td>
+                    <td>
+                        <a th:href="@{/deleteGossip(id=${gossip.id})}" class="btn btn-danger ml-2">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</body>
+</html>
