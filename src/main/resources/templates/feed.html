@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feed</title>
+</head>
+<body>
+<div class="starter-template panel" th:each="post : ${feed}">
+  <div class="panel-heading">
+    <div th:text="'Created: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')}"></div>
+  </div>
+  <h3 class="panel-body" th:text="${post.content}">Body</h3>
+  <br></br>
+</div>
+</body>
+</html>

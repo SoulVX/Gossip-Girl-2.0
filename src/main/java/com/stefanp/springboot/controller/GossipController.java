@@ -13,24 +13,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class GossipController {
     private final GossipService gossipService;
     private final UserService userService;
+    ArrayList<Gossip> feed;
 
     public GossipController(GossipService gossipService, UserService userService) {
         this.gossipService = gossipService;
         this.userService = userService;
+        feed = new ArrayList<>();
     }
 
     @PostMapping("/api/gossip")
     public ResponseEntity<Gossip> sendGossip(@RequestBody Gossip gossip) {
-        if (GossipChecker.isGossipInappropriate(gossip) == true)
-            throw new InvalidGossipException(gossip);
-        if (GossipChecker.alreadyExists(, gossip) == true)
-            throw new AlreadyExistsGossipException(, gossip);
+//        if (GossipChecker.isGossipInappropriate(gossip) == true)
+//            throw new InvalidGossipException(gossip);
+//        if (GossipChecker.alreadyExists(, gossip) == true)
+//            throw new AlreadyExistsGossipException(, gossip);
         return new ResponseEntity<>(gossipService.saveGossip(gossip), HttpStatus.CREATED);
     }
 
@@ -43,7 +46,7 @@ public class GossipController {
     public String getFormBack(Gossip gossip) {
         gossip.setUser_name(userService.getUser(gossip.getUser_id()).getUsername());
         gossipService.saveGossip(gossip);
-        return "redirect:/feed";
+        return "redirect:/inbox";
     }
 
     @GetMapping("/sendGossip")
@@ -60,8 +63,24 @@ public class GossipController {
     }
 
     @GetMapping("/deleteGossip")
-    public String deleteFeed(@RequestParam Long id) {
+    public String deleteGossipFromInbox(@RequestParam Long id) {
         gossipService.deleteGossip(id);
         return "redirect:/inbox";
+    }
+
+    @GetMapping("/postGossip")
+    public String postGossipFromInbox(@RequestParam Long id) {
+        Gossip gossip = gossipService.getGossip(id);
+        gossip.setIsHiddenInbox(true);
+        gossipService.deleteGossip(id);
+        gossipService.saveGossip(gossip);
+        feed.add(gossip);
+        return "redirect:/inbox";
+    }
+
+    @GetMapping("/feed")
+    public String showFeed(Model model) {
+        model.addAttribute("feed", feed);
+        return "/feed";
     }
 }

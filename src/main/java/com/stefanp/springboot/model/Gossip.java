@@ -37,4 +37,7 @@ public class Gossip {
 
     @Column(name = "is_pinned")
     private Boolean isPinned = false;
+
+    @Column(name = "is_hidden_inbox")
+    private Boolean isHiddenInbox = false;
 }
