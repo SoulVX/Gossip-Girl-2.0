@@ -69,13 +69,19 @@ public class GossipController {
     }
 
     @GetMapping("/postGossip")
-    public String postGossipFromInbox(@RequestParam Long id) {
+    public String editGossipBeforePosting(@RequestParam Long id, Model model) {
         Gossip gossip = gossipService.getGossip(id);
-        gossip.setIsHiddenInbox(true);
         gossipService.deleteGossip(id);
+        model.addAttribute("gossip", gossip);
+        return "/postForm";
+    }
+
+    @PostMapping("/postGossip")
+    public String postGossipAfterEditing(Gossip gossip) {
+        gossip.setIsHiddenInbox(true);
         gossipService.saveGossip(gossip);
         feed.add(gossip);
-        return "redirect:/inbox";
+        return "redirect:/feed";
     }
 
     @GetMapping("/feed")

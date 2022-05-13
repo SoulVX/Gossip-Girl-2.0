@@ -11,7 +11,7 @@
 <body>
 <div class="card" th:each="post : ${feed}" th:if="${!post.isHidden}">
     <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title" th:text="${post.title}">Card title</h5>
         <h6 class="card-subtitle mb-2 text-muted" th:text="'Sent at : ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')}">Card subtitle</h6>
         <p class="card-text" th:text="${post.content}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     </div>

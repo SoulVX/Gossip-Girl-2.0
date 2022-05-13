@@ -15,6 +15,9 @@ public class Gossip {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "title")
+    private String title;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date", nullable = false, updatable = false)
     @CreationTimestamp

@@ -13,19 +13,6 @@
         <h2>Gossips</h2>
         <hr/>
 
-<!--        <div class="starter-template panel" th:each="gossip : ${gossips}">-->
-<!--            <div class="panel-heading">-->
-<!--&lt;!&ndash;                <h1><a th:text="${post.title}" th:href="@{'/post/' + ${post.id}}">Title</a></h1>&ndash;&gt;-->
-<!--                <div th:text="'Created: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')} + ' by '">-->
-<!--                    Created by-->
-<!--                </div>-->
-<!--                <div><a th:text="${post.user.username}" th:href="@{'/blog/' + ${post.user.username}}">User</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <h3 class="panel-body" th:text="${post.body}">Body</h3>-->
-<!--            <br></br>-->
-<!--        </div>-->
-
         <table class = "table table-bordered table-striped">
             <thead>
             <tr>
@@ -39,8 +26,8 @@
                     <td th:text="${gossip.user_name}"></td>
                     <td th:text="${gossip.content}"></td>
                     <td>
+                        <a th:href="@{/postGossip(id=${gossip.id})}" class="btn btn-primary ml-2">Post</a>
                         <a th:href="@{/deleteGossip(id=${gossip.id})}" class="btn btn-danger ml-2">Delete</a>
-                        <a th:href="@{/postGossip(id=${gossip.id})}" class="btn ml-2">Post</a>
                     </td>
                 </tr>
             </tbody>
