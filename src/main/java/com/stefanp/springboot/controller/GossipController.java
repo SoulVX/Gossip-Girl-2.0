@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class GossipController {
         this.gossipService = gossipService;
         this.userService = userService;
         feed = new ArrayList<>();
+    }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "/login";
     }
 
     @PostMapping("/api/gossip")
@@ -43,8 +49,8 @@ public class GossipController {
     }
 
     @PostMapping("/sendGossip")
-    public String getFormBack(Gossip gossip) {
-        gossip.setUser_name(userService.getUser(gossip.getUser_id()).getUsername());
+    public String getFormBack(Gossip gossip, Principal principal) {
+        gossip.setUser_name(principal.getName());
         gossipService.saveGossip(gossip);
         return "redirect:/inbox";
     }
