@@ -1,6 +1,5 @@
 package com.springboot.controller;
 
-import com.springboot.model.Gossip;
 import com.springboot.model.Truth;
 import com.springboot.service.TruthService;
 import org.springframework.http.HttpStatus;
