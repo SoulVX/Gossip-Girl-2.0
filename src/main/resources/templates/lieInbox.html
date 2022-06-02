@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inbox</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Lies</h2>
+    <hr/>
+
+    <table class = "table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Sent by</th>
+            <th>Content</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="lie : ${lies}">
+            <td th:text="${lie.content}"></td>
+            <td>
+                <a th:href="@{/postLie(id=${lie.id})}" class="btn btn-primary ml-2">Post</a>
+                <a th:href="@{/deleteLie(id=${lie.id})}" class="btn btn-danger ml-2">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

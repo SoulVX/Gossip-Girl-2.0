@@ -4,7 +4,7 @@
 </head>
 <body>
 <div th:fragment="truthPostFgmt">
-  <div class="card" th:each="post : ${feed}">
+  <div class="card" th:each="post : ${truthFeed}">
     <div class="card-body">
       <h5 class="card-title" th:text="${post.title}"></h5>
       <p class="card-text" th:text="${post.content}"></p>
