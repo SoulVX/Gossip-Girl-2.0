@@ -25,7 +25,7 @@ public class Gossip {
 
     @Column(name = "user_id")
     private Long user_id;
-
+<div th:fragment="posts">
     @Column(name = "user_name")
     private String user_name;
 

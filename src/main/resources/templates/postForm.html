@@ -26,7 +26,11 @@
                           class="form-control input-lg"></textarea>
         </div>
 
-        <input type="checkbox" th:field="*{isHidden}" th:value="*{isHidden}" value="Hide gossip"/>
+        <div class="container">
+            <input type="checkbox" th:field="*{isHidden}" th:value="*{isHidden}">   Hide gossip</input>
+        </div>
+
+        <br>
 
         <div class="form-group">
             <input type="submit" class="btn btn-primary btn-block" value="Post gossip"/>

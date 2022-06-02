@@ -3,21 +3,14 @@
 <head>
 </head>
 <body>
-<div class="card" style="width: 18rem;" th:each="post : ${feed}" th:if="${!post.isHidden}">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <h6 class="card-subtitle mb-2 text-muted" th:text="'Sent at : ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')}">Card subtitle</h6>
-        <p class="card-text" th:text="${post.content}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div th:fragment="postFgmt">
+    <div class="card" th:each="post : ${feed}" th:if="${!post.isHidden}">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${post.title}"></h5>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="'Sent at : ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')}"></h6>
+            <p class="card-text" th:text="${post.content}"></p>
+        </div>
     </div>
 </div>
-<!--<div th:fragment="postFragment">-->
-<!--    <div class="starter-template panel" th:each="post : ${feed}" th:if="${!post.isHidden}">-->
-<!--        <div class="panel-heading">-->
-<!--            <div th:text="'Sent at : ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')}"></div>-->
-<!--        </div>-->
-<!--        <h3 class="panel-body" th:text="${post.content}">Body</h3>-->
-<!--        <br></br>-->
-<!--    </div>-->
-<!--</div>-->
 </body>
 </html>
