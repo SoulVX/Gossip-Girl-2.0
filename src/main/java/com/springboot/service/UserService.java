@@ -1,6 +1,6 @@
-package com.stefanp.springboot.service;
+package com.springboot.service;
 
-import com.stefanp.springboot.model.User;
+import com.springboot.model.User;
 
 import java.util.List;
 

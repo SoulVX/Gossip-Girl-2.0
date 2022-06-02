@@ -1,7 +1,7 @@
-package com.stefanp.springboot.controller;
+package com.springboot.controller;
 
-import com.stefanp.springboot.model.User;
-import com.stefanp.springboot.service.UserService;
+import com.springboot.model.User;
+import com.springboot.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

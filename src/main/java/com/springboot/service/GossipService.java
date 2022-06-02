@@ -1,6 +1,6 @@
-package com.stefanp.springboot.service;
+package com.springboot.service;
 
-import com.stefanp.springboot.model.Gossip;
+import com.springboot.model.Gossip;
 
 import java.util.List;
 

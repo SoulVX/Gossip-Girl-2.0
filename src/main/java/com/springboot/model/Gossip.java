@@ -1,4 +1,4 @@
-package com.stefanp.springboot.model;
+package com.springboot.model;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;

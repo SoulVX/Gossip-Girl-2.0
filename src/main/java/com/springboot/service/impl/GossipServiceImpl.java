@@ -1,9 +1,9 @@
-package com.stefanp.springboot.service.impl;
+package com.springboot.service.impl;
 
-import com.stefanp.springboot.model.Gossip;
-import com.stefanp.springboot.repository.GossipRepository;
-import com.stefanp.springboot.repository.UserRepository;
-import com.stefanp.springboot.service.GossipService;
+import com.springboot.model.Gossip;
+import com.springboot.service.GossipService;
+import com.springboot.repository.GossipRepository;
+import com.springboot.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
