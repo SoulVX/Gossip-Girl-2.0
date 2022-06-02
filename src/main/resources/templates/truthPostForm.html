@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Post the gossip</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <form autocomplete="off" action="#" th:action="@{/postTruth}"
+        th:object="${truth}" method="post" class="form-horizontal"
+        role="form">
+
+    <h2 class="text-center">Edit and post the gossip</h2>
+
+    <div class="form-group">
+      <input type="text" th:field="*{title}" placeholder="Title"
+             class="form-control input-lg"/>
+    </div>
+
+    <div class="form-group">
+                <textarea th:field="*{content}" placeholder="Content"
+                          class="form-control input-lg"></textarea>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary btn-block" value="Post gossip"/>
+    </div>
+
+  </form>
+</div>
+</body>
+</html>
