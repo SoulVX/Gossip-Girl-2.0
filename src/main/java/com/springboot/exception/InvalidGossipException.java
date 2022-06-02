@@ -1,6 +1,6 @@
-package com.stefanp.springboot.exception;
+package com.springboot.exception;
 
-import com.stefanp.springboot.model.Gossip;
+import com.springboot.model.Gossip;
 
 public class InvalidGossipException extends RuntimeException {
 

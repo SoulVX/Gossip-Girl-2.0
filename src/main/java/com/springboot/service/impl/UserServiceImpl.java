@@ -1,13 +1,11 @@
-package com.stefanp.springboot.service.impl;
+package com.springboot.service.impl;
 
-import com.stefanp.springboot.model.User;
-import com.stefanp.springboot.repository.UserRepository;
-import com.stefanp.springboot.service.UserService;
-import org.hibernate.exception.ConstraintViolationException;
+import com.springboot.model.User;
+import com.springboot.service.UserService;
+import com.springboot.repository.UserRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Service

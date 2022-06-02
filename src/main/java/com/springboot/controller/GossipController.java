@@ -1,10 +1,10 @@
-package com.stefanp.springboot.controller;
+package com.springboot.controller;
 
-import com.stefanp.springboot.exception.InvalidGossipException;
-import com.stefanp.springboot.model.Gossip;
-import com.stefanp.springboot.model.GossipChecker;
-import com.stefanp.springboot.service.GossipService;
-import com.stefanp.springboot.service.UserService;
+import com.springboot.exception.InvalidGossipException;
+import com.springboot.model.Gossip;
+import com.springboot.model.GossipChecker;
+import com.springboot.service.GossipService;
+import com.springboot.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

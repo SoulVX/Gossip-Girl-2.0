@@ -1,6 +1,6 @@
-package com.stefanp.springboot.repository;
+package com.springboot.repository;
 
-import com.stefanp.springboot.model.Gossip;
+import com.springboot.model.Gossip;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GossipRepository extends JpaRepository<Gossip, Long> {
