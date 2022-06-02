@@ -32,7 +32,8 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter
     {
         http
                 .authorizeRequests()
-                .antMatchers("/assets/**", "/public/**").permitAll()
+                .antMatchers("/sendGossip").permitAll()
+                .antMatchers("/inbox").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

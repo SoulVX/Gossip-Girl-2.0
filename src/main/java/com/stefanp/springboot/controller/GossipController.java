@@ -7,6 +7,8 @@ import com.stefanp.springboot.service.GossipService;
 import com.stefanp.springboot.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,10 +51,18 @@ public class GossipController {
     }
 
     @PostMapping("/sendGossip")
-    public String getFormBack(Gossip gossip, Principal principal) {
-        gossip.setUser_name(principal.getName());
+    public String getFormBack(Gossip gossip, Principal principal, Authentication authentication) {
+        if(principal == null)
+            gossip.setUser_name("anon");
+        else
+            gossip.setUser_name(principal.getName());
         gossipService.saveGossip(gossip);
-        return "redirect:/inbox";
+        if(principal == null)
+            return "redirect:/sendGossip";
+        else if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN")))
+            return "redirect:/inbox";
+        else
+            return "redirect:/feed";
     }
 
     @GetMapping("/sendGossip")
@@ -94,5 +104,10 @@ public class GossipController {
     public String showFeed(Model model) {
         model.addAttribute("feed", feed);
         return "/feed";
+    }
+
+    @GetMapping("/accessDenied")
+    public String deniedAcces(){
+        return "/accesDenied";
     }
 }
