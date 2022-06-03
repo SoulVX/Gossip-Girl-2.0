@@ -32,7 +32,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter
     {
         http
                 .authorizeRequests()
-                .antMatchers("/sendGossip", "/").permitAll()
+                .antMatchers("/sendGossip", "/", "/register").permitAll()
                 .antMatchers("/inbox").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -41,7 +41,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter
                 .permitAll()
                 //Asigur persistenta link-ului anterior, care a cerut autentificarea
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
-                .defaultSuccessUrl("/successLogin", false).failureUrl("/public/authFailed")
+                .defaultSuccessUrl("/successLogin", false).failureUrl("/wrongLogin")
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .permitAll()

@@ -37,15 +37,16 @@ public class UserAuthenticationService
                 if (user.getUsername().equals(name) && user.getPassword().equals(password)) {
                     if (user.getUsername().equals("gossipgirl"))
                         grantedAuths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-                    else
+                    else {
                         grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-
+                        System.out.println("TEST");
+                    }
                     retVal = new UsernamePasswordAuthenticationToken(name, "", grantedAuths);
                     return retVal;
                 }
             }
         }
-        return new UsernamePasswordAuthenticationToken(null, null, grantedAuths);
+        return null;
     }
 
     @Override

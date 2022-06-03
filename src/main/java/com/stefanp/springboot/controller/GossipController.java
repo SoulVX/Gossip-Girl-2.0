@@ -3,6 +3,7 @@ package com.stefanp.springboot.controller;
 import com.stefanp.springboot.exception.InvalidGossipException;
 import com.stefanp.springboot.model.Gossip;
 import com.stefanp.springboot.model.GossipChecker;
+import com.stefanp.springboot.model.User;
 import com.stefanp.springboot.service.GossipService;
 import com.stefanp.springboot.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,30 @@ public class GossipController {
         this.gossipService = gossipService;
         this.userService = userService;
         feed = new ArrayList<>();
+    }
+
+    @GetMapping("/wrongLogin")
+    public String loginWrong() {
+        return "/wrongLogin";
+    }
+
+    @GetMapping("/register")
+    public String registerUser(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "/register";
+    }
+
+    @PostMapping("/register")
+    public String afterRegister(User user) {
+        List<User> users = userService.getAllUsers();
+        long max = -1;
+        for(User u : users)
+            if(u.getId() > max)
+                max = u.getId();
+        user.setId(max+1);
+        userService.saveUser(user);
+        return "redirect:/login";
     }
 
     @RequestMapping("/")
