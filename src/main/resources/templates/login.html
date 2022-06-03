@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Custom Login Page</title>
+    <div th:replace="/fragments/headerFragment :: header-css"/>
 </head>
 <body>
+<div th:replace="/fragments/headerFragment :: header"/>
 <h2>Custom Login Page</h2>
 <form th:action="@{/login}" method="post">
     <label for="username">Username</label>: <input type="text"

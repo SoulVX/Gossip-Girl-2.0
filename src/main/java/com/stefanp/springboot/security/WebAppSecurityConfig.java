@@ -41,7 +41,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter
                 .permitAll()
                 //Asigur persistenta link-ului anterior, care a cerut autentificarea
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
-                .defaultSuccessUrl("/secure/index", false).failureUrl("/public/authFailed")
+                .defaultSuccessUrl("/successLogin", false).failureUrl("/public/authFailed")
                 .and()
                 .logout().logoutSuccessUrl("/public/logout")
                 .permitAll()

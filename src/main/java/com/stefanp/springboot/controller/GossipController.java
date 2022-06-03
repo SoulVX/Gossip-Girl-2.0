@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,5 +110,13 @@ public class GossipController {
     @GetMapping("/accessDenied")
     public String deniedAcces(){
         return "/accesDenied";
+    }
+
+    @GetMapping("/successLogin")
+    public String successLogin(HttpServletRequest request) {
+        if(request.isUserInRole("ROLE_ADMIN"))
+            return "redirect:/inbox";
+        else
+            return "redirect:/feed";
     }
 }
