@@ -30,6 +30,11 @@ public class GossipController {
         feed = new ArrayList<>();
     }
 
+    @RequestMapping("/")
+    public String defaultHome(){
+        return "redirect:/sendGossip";
+    }
+
     @RequestMapping("/login")
     public String login() {
         return "/login";

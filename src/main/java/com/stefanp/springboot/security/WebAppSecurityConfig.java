@@ -32,7 +32,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter
     {
         http
                 .authorizeRequests()
-                .antMatchers("/sendGossip").permitAll()
+                .antMatchers("/sendGossip", "/").permitAll()
                 .antMatchers("/inbox").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -43,7 +43,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
                 .defaultSuccessUrl("/successLogin", false).failureUrl("/public/authFailed")
                 .and()
-                .logout().logoutSuccessUrl("/public/logout")
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);

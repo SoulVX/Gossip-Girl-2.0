@@ -9,6 +9,7 @@
           crossorigin="anonymous">
 </head>
 <body>
+<div th:replace="/fragments/headerFragment :: header"/>
 <div class="container">
             <form autocomplete="off" action="#" th:action="@{/sendGossip}"
                   th:object="${gossip}" method="post" class="form-horizontal"
